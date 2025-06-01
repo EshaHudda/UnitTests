@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input[type="text"], input[type="email"] { padding: 8px; margin-bottom: 10px; width: 200px; }
+        button { padding: 10px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        #message { margin-top: 15px; color: green; }
+        #userList { margin-top: 20px; border: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>User Management</h1>
+
+    <h2>Add New User</h2>
+    <input type="text" id="usernameInput" placeholder="Enter username">
+    <input type="email" id="emailInput" placeholder="Enter email">
+    <button id="addUserButton">Add User</button>
+    <p id="message"></p>
+
+    <h2>Current Users</h2>
+    <div id="userList">
+        <p>No users added yet.</p>
+    </div>
+
+    <script>
+        document.getElementById('addUserButton').addEventListener('click', function() {
+            const username = document.getElementById('usernameInput').value;
+            const email = document.getElementById('emailInput').value;
+            const messageElement = document.getElementById('message');
+            const userListElement = document.getElementById('userList');
+
+            if (username && email) {
+                // Simulate API call and update UI
+                const newUserEntry = document.createElement('p');
+                newUserEntry.textContent = `Username: ${username}, Email: ${email}`;
+                if (userListElement.querySelector('p').textContent === 'No users added yet.') {
+                    userListElement.innerHTML = ''; // Clear "No users" message
+                }
+                userListElement.appendChild(newUserEntry);
+                messageElement.textContent = `User '${username}' added successfully!`;
+                messageElement.style.color = 'green';
+                document.getElementById('usernameInput').value = '';
+                document.getElementById('emailInput').value = '';
+            } else {
+                messageElement.textContent = 'Please enter both username and email.';
+                messageElement.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
